@@ -21,3 +21,12 @@
     const contentCards = document.querySelector('#content-cards');
     contentCards.innerHTML += templateRenderPokemonCard(pokemon);
   }
+
+  function searchPokemon() {
+      const input = document.getElementById('search-input').value.toLowerCase();
+      const pokemonCards = document.querySelectorAll('.pokemon-card');
+      pokemonCards.forEach(card => {
+          const pokemonName = card.querySelector('h3').innerText.toLowerCase();
+          card.style.display = pokemonName.includes(input) ? 'block' : 'none';
+      });
+  }
