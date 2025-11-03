@@ -1,7 +1,7 @@
   const BASE_URL = 'https://pokeapi.co/api/v2/pokemon/';
 
   async function displayAllPokemon() {
-      const response = await fetch(`${BASE_URL}?limit=30&offset=15`);
+      const response = await fetch(`${BASE_URL}?limit=30&offset=0`);
       const data = await response.json();
       console.log(`${data.results.length} Pokemon gefunden!`);      
       document.querySelector('#content-cards').innerHTML = '';
