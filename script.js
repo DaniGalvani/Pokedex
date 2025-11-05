@@ -23,10 +23,29 @@
   }
 
   function searchPokemon() {
-      const input = document.getElementById('search-input').value.toLowerCase();
+    const input = document.getElementById('search-input').value.toLowerCase();
+    if (input.length < 3) {
       const pokemonCards = document.querySelectorAll('.pokemon-card');
       pokemonCards.forEach(card => {
-          const pokemonName = card.querySelector('h3').innerText.toLowerCase();
-          card.style.display = pokemonName.includes(input) ? 'block' : 'none';
+          card.style.display = 'block';
       });
+      return;
+    }
+    const pokemonCards = document.querySelectorAll('.pokemon-card');
+    pokemonCards.forEach(card => {
+        const pokemonName = card.querySelector('h3').innerText.toLowerCase();
+        card.style.display = pokemonName.includes(input) ? 'block' : 'none';
+    });      
+  }
+
+  async function loadMorePokemon() {
+    const currentCount = document.querySelectorAll('.pokemon-card').length;
+    const newOffset = currentCount;
+    const response = await fetch(`${BASE_URL}?limit=30&offset=${newOffset}`);
+    const data = await response.json();
+    for (let i = 0; i < data.results.length; i++) {
+        const pokemon = data.results[i];
+        const pokemonDetails = await fetchPokemonDetails(pokemon.url);
+        renderPokemonCard(pokemonDetails);
+      }
   }

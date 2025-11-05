@@ -10,7 +10,11 @@
   <body onload="displayAllPokemon()">
     <header class="header-container">
       <div class="header">
-        <h1>Pokedex</h1>
+        <div class="img-container">
+          <img src="./assets/img/pokemon_ball.png" alt="Pokeball Icon" class="header-icon" />
+          <h1>Pokedex</h1>
+          <img src="./assets/img/pokemon_ball.png" alt="Pokeball Icon" class="header-icon" />
+        </div>        
         <p>
           Willkommen im Pokedex! Hier findest du Informationen zu deinen
           Lieblings-Pokémon.
@@ -19,13 +23,14 @@
           <input class="input"
             type="text"
             id="search-input"
-            placeholder="Suche nach Pokémon..."
+            placeholder="Suche nach deinem Lieblings-Pokémon..."
             oninput="searchPokemon()"
           />
         </div>
       </div>
     </header>
     <div class="content" id="content-cards"></div>
+    <button class="load-more-btn" onclick="loadMorePokemon()">Mehr Pokémon laden</button>
     <script src="./scripts/templates.js"></script>
     <script src="script.js"></script>
   </body>
