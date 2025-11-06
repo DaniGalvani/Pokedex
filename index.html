@@ -17,7 +17,8 @@
         </div>        
         <p>
           Willkommen im Pokedex! Hier findest du Informationen zu deinen
-          Lieblings-Pokémon.
+          Lieblings-Pokémon. <p><i> Klicke auf dein Lieblings-Pokémon, um mehr Details zu
+          erfahren.</i></p>
         </p>
         <div class="search-bar">
           <input class="input"
@@ -30,7 +31,10 @@
       </div>
     </header>
     <div class="content" id="content-cards"></div>
-    <button class="load-more-btn" onclick="loadMorePokemon()">Mehr Pokémon laden</button>
+    <div class="btn-flex">
+      <button class="load-more-btn" onclick="loadMorePokemon()">Mehr Pokémon laden</button>
+      <button class="reset-btn" onclick="resetDisplayPokemon()">Zurücksetzen</button>
+    </div>
     <script src="./scripts/templates.js"></script>
     <script src="script.js"></script>
   </body>

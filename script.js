@@ -49,3 +49,7 @@
         renderPokemonCard(pokemonDetails);
       }
   }
+
+  function resetDisplayPokemon() {
+    displayAllPokemon();
+  }
