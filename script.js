@@ -1,16 +1,19 @@
 const BASE_URL = "https://pokeapi.co/api/v2/pokemon/";
 
 let pokemonList = [];
+let allPokemonDetails = [];
 
 async function displayAllPokemon() {
   const response = await fetch(`${BASE_URL}?limit=30&offset=0`);
   const data = await response.json();
   pokemonList = data.results;
+  allPokemonDetails = [];
   console.log(`${data.results.length} Pokemon gefunden!`);
   document.querySelector("#content-cards").innerHTML = "";
   for (let i = 0; i < data.results.length; i++) {
     const pokemon = data.results[i];
     const pokemonDetails = await fetchPokemonDetails(pokemon.url);
+    allPokemonDetails.push(pokemonDetails);
     renderPokemonCard(pokemonDetails);
   }
 }
@@ -56,10 +59,26 @@ async function loadMorePokemon() {
   for (let i = 0; i < data.results.length; i++) {
     const pokemon = data.results[i];
     const pokemonDetails = await fetchPokemonDetails(pokemon.url);
+    allPokemonDetails.push(pokemonDetails);
     renderPokemonCard(pokemonDetails);
   }
 }
 
 function resetDisplayPokemon() {
   displayAllPokemon();
+}
+
+function closePopupCard() {
+  const popupCard = document.querySelector(".popup");
+  popupCard.style.display = "none";
+}
+
+function openPopupCard(id) {
+  const pokemon = allPokemonDetails.find((p) => p.id === id);
+
+  const popup = document.getElementById("popup");
+  const popupCardInfo = document.getElementById("popup-card-info");
+
+  popupCardInfo.innerHTML = templateRenderPopupCard(pokemon);
+  popup.style.display = "flex";
 }
