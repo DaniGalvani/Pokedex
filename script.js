@@ -1,4 +1,5 @@
 const BASE_URL = "https://pokeapi.co/api/v2/pokemon/";
+const ABILITIES_URL = "https://pokeapi.co/api/v2/ability/";
 
 let pokemonList = [];
 let allPokemonDetails = [];
@@ -70,15 +71,24 @@ function resetDisplayPokemon() {
 
 function closePopupCard() {
   const popupCard = document.querySelector(".popup");
+  const popupCardInfo = document.getElementById("popup-card-info");
+  popupCardInfo.className = "popup-card-info";
   popupCard.style.display = "none";
 }
 
 function openPopupCard(id) {
   const pokemon = allPokemonDetails.find((p) => p.id === id);
-
-  const popup = document.getElementById("popup");
+  const primaryType = pokemon.types[0].type.name;
   const popupCardInfo = document.getElementById("popup-card-info");
-
-  popupCardInfo.innerHTML = templateRenderPopupCard(pokemon);
+  const popup = document.querySelector(".popup");
+  
+  popupCardInfo.classList.add(`type-${primaryType.toLowerCase()}`);
+  popupCardInfo.innerHTML = templateRenderPopupCard(pokemon, primaryType);
   popup.style.display = "flex";
+}
+
+async function abilityInfo(abilityUrl) {
+  const response = await fetch(abilityUrl);
+  const data = await response.json();
+  alert(`Fähigkeit: ${data.name}\n\nBeschreibung: ${data.effect_entries.find(entry => entry.language.name === 'de').effect}`);
 }

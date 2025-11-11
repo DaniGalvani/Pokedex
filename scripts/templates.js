@@ -27,14 +27,8 @@ function templateRenderPopupCard(pokemon) {
         }</h2>      
         <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
       </div>
-        <div class="pokemon-info"><p><b>Erfahrung:</b> <i>${
-          pokemon.base_experience
-        }</i></p><br></div>
-        <div class="pokemon-info"><p><b>Typ:</b> <i>${pokemon.types
-          .map(
-            (type) =>
-              type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1)
-          )
+        <div class="pokemon-info"><p><b>Fähigkeit:</b> <i>${pokemon.abilities
+          .map((ability) => ability.ability.name.charAt(0).toUpperCase() + ability.ability.name.slice(1))
           .join(", ")}</i></p><br></div>
         <div class="pokemon-info"><p><b>Gewicht:</b> <i>${
           pokemon.weight
