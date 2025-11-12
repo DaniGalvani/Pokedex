@@ -4,7 +4,7 @@ function templateRenderPokemonCard(pokemon) {
             <h3>${
               pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)
             }</h3>
-            <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
+            <img src="${pokemon.sprites.other.home.front_shiny}" alt="${pokemon.name}">
             <div class="pokemon-info"><p><b>Erfahrung:</b> <i>${
               pokemon.base_experience
             }</i></p><br></div>
@@ -25,7 +25,7 @@ function templateRenderPopupCard(pokemon) {
         <h2>${
           pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)
         }</h2>      
-        <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
+        <img src="${pokemon.sprites.other.home.front_shiny}" alt="${pokemon.name}">
       </div>
         <div class="pokemon-info"><p>Fähigkeit: ${pokemon.abilities
           .map((ability) => ability.ability.name.charAt(0).toUpperCase() + ability.ability.name.slice(1))

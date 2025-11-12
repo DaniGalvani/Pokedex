@@ -7,15 +7,14 @@ async function displayAllPokemon() {
   const response = await fetch(`${BASE_URL}?limit=30&offset=0`);
   const data = await response.json();
   pokemonList = data.results;
-  allPokemonDetails = [];
   console.log(`${data.results.length} Pokemon gefunden!`);
   document.querySelector("#content-cards").innerHTML = "";
-  for (let i = 0; i < data.results.length; i++) {
-    const pokemon = data.results[i];
-    const pokemonDetails = await fetchPokemonDetails(pokemon.url);
-    allPokemonDetails.push(pokemonDetails);
-    renderPokemonCard(pokemonDetails);
-  }
+    for (let i = 0; i < data.results.length; i++) {
+      const pokemon = data.results[i];
+      const pokemonDetails = await fetchPokemonDetails(pokemon.url);
+      allPokemonDetails.push(pokemonDetails);
+      renderPokemonCard(pokemonDetails);
+    }
 }
 
 async function fetchPokemonDetails(url) {
@@ -73,16 +72,23 @@ function closePopupCard() {
   const popupCardInfo = document.getElementById("popup-card-info");
   popupCardInfo.className = "popup-card-info";
   popupCard.style.display = "none";
+  document.body.style.overflow = "auto";
 }
 
 function openPopupCard(id) {
   const pokemon = allPokemonDetails.find((p) => p.id === id);
   const primaryType = pokemon.types[0].type.name;
   const popupCardInfo = document.getElementById("popup-card-info");
-  const popup = document.querySelector(".popup");
-  
+  const popup = document.querySelector(".popup");  
   document.body.style.overflow = "hidden";
   popupCardInfo.classList.add(`type-${primaryType.toLowerCase()}`);
   popupCardInfo.innerHTML = templateRenderPopupCard(pokemon, primaryType);
   popup.style.display = "flex";
 }
+
+const popupCard = document.querySelector(".popup");
+popupCard.addEventListener("click", (event) => {
+    if (event.target === popupCard) {
+      closePopupCard();
+    }
+  });
