@@ -17,6 +17,10 @@ body {
   min-height: 100vh;
 }
 
+.body.no-scroll {
+  overflow: hidden;
+}
+
 .header-container {
   display: flex;
   align-items: center;
@@ -180,11 +184,11 @@ body {
 }
 
 .type-poison {
-  background-color: #7038F8;
+  background-color: #ec5fe5;
 }
 
 .type-ground {
-  background-color: #705848;
+  background-color: #c26e36;
 }
 
 .type-fairy {
@@ -194,13 +198,21 @@ body {
 .flex-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   padding: 20px 20px;
+  height: 600px;
 }
 
 .flex-container p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
   font-size: 20px;
   margin: 5px 0;
+  padding: 0 10px;
+  text-align: center;
+  font-weight: lighter;
 }
 
 .img-container {
@@ -262,4 +274,36 @@ body {
   border: 3px solid black;
   padding: 16px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.nav-btn {
+  display: flex;
+  gap: 20px;
+  justify-content: space-evenly;
+  margin-top: 40px;
+}
+
+.preview-btn, .next-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  filter: invert(1);
+}
+.preview-btn img, .next-btn img {
+  width: 50px;
+  height: 50px;
+}
+
+.next-btn img {
+  transform: rotate(180deg);
+}
+
+.preview-btn img:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s ease;
+}
+
+.next-btn img:hover {
+  transform: scale(1.1) rotate(180deg);
+  transition: transform 0.2s ease;
 }
