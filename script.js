@@ -81,6 +81,7 @@ function openPopupCard(id) {
   const popupCardInfo = document.getElementById("popup-card-info");
   const popup = document.querySelector(".popup");
   
+  document.body.style.overflow = "hidden";
   popupCardInfo.classList.add(`type-${primaryType.toLowerCase()}`);
   popupCardInfo.innerHTML = templateRenderPopupCard(pokemon, primaryType);
   popup.style.display = "flex";
