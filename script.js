@@ -86,9 +86,27 @@ function openPopupCard(id) {
   popup.style.display = "flex";
 }
 
-const popupCard = document.querySelector(".popup");
-popupCard.addEventListener("click", (event) => {
-    if (event.target === popupCard) {
+const popup = document.querySelector(".popup");
+popup.addEventListener("click", (event) => {
+    if (event.target === popup) {
       closePopupCard();
     }
   });
+
+function popupNextPokemon(currentId) {
+  const currentIndex = allPokemonDetails.findIndex((p) => p.id === currentId);
+  const nextIndex = (currentIndex + 1) % allPokemonDetails.length;
+  const nextPokemon = allPokemonDetails[nextIndex];
+  const popupCardInfo = document.getElementById("popup-card-info");
+  popupCardInfo.className = "popup-card-info";
+  openPopupCard(nextPokemon.id);
+}
+
+function popupPreviousPokemon(currentId) {
+  const currentIndex = allPokemonDetails.findIndex((p) => p.id === currentId);
+  const previousIndex = (currentIndex - 1 + allPokemonDetails.length) % allPokemonDetails.length;
+  const previousPokemon = allPokemonDetails[previousIndex];
+  const popupCardInfo = document.getElementById("popup-card-info");
+  popupCardInfo.className = "popup-card-info";
+  openPopupCard(previousPokemon.id);
+}

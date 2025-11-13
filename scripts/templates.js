@@ -5,10 +5,7 @@ function templateRenderPokemonCard(pokemon) {
               pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)
             }</h3>
             <img src="${pokemon.sprites.other.home.front_shiny}" alt="${pokemon.name}">
-            <div class="pokemon-info"><p><b>Erfahrung:</b> <i>${
-              pokemon.base_experience
-            }</i></p><br></div>
-            <div class="pokemon-info"><p><b>Typ:</b> <i>${pokemon.types
+            <div class="pokemon-info"><p> <i>${pokemon.types
               .map(
                 (type) =>
                   type.type.name.charAt(0).toUpperCase() +
@@ -37,8 +34,8 @@ function templateRenderPopupCard(pokemon) {
           pokemon.height
         }</p><br></div>
         <nav class="nav-btn">
-          <button class="preview-btn"><img src="./assets/img/zuruck-button.png" alt="Previous"></button>
-          <button class="next-btn"><img src="./assets/img/zuruck-button.png" alt="Next"></button>
+          <button class="preview-btn"><img src="./assets/img/zuruck-button.png" alt="Previous" onclick="popupPreviousPokemon(${pokemon.id})"></button>
+          <button class="next-btn"><img src="./assets/img/zuruck-button.png" alt="Next" onclick="popupNextPokemon(${pokemon.id})"></button>
         </nav>
     </div>`;
 }
