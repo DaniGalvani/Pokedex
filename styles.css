@@ -258,10 +258,10 @@ body {
   position: relative;
 }
 
-.popup-card button.close-btn {
+.popup-card .close-btn {
   position: absolute;
   top: 30px;
-  right: 40px;
+  left: 40px;
   background: none;
   border: none;
   font-size: 18px;
@@ -270,13 +270,14 @@ body {
   filter: invert(1);
 }
 
-.popup-card button.close-btn img {
-  width: 30px;
-  height: 30px;
+.popup-card .close-btn img {
+  width: 25px;
+  height: 25px;
 }
 
-.popup-card button.close-btn:hover {
-  color: #ff595e;
+.popup-card .close-btn:hover {
+  transform: scale(1.30);
+  transition: transform 0.3s ease;
 }
 
 .popup-card-info {
@@ -316,4 +317,23 @@ body {
 .next-btn img:hover {
   transform: scale(1.1) rotate(180deg);
   transition: transform 0.2s ease;
+}
+
+.info-container {
+  border: 1px solid #333;
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 20px;
+  background-color: rgb(235, 233, 233);
+  color: #333;
+}
+
+.info-container ul {
+  list-style: none;
+  line-height: 30px;
+}
+
+.info-container ul li {
+  font-size: 18px;
+  font-weight: lighter;
 }

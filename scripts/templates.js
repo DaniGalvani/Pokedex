@@ -24,7 +24,24 @@ function templateRenderPopupCard(pokemon) {
         }</h2>      
         <img src="${pokemon.sprites.other.home.front_shiny}" alt="${pokemon.name}">
       </div>
-        <div class="pokemon-info"><p>Fähigkeit: ${pokemon.abilities
+      <div class="info-container">
+        <ul>
+          <li><strong>Typ:</strong> ${pokemon.types
+            .map((type) => type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1))
+            .join(", ")}</li>
+          <li><strong>Abilities:</strong> ${pokemon.abilities
+            .map((ability) => ability.ability.name.charAt(0).toUpperCase() + ability.ability.name.slice(1))
+            .join(", ")}</li>
+        </ul>
+      </div>  
+        <nav class="nav-btn">
+          <button class="preview-btn"><img src="./assets/img/zuruck-button.png" alt="Previous" onclick="popupPreviousPokemon(${pokemon.id})"></button>
+          <button class="next-btn"><img src="./assets/img/zuruck-button.png" alt="Next" onclick="popupNextPokemon(${pokemon.id})"></button>
+        </nav>  
+    </div>`;
+}
+
+{/* <div class="pokemon-info"><p>Fähigkeit: ${pokemon.abilities
           .map((ability) => ability.ability.name.charAt(0).toUpperCase() + ability.ability.name.slice(1))
           .join(", ")}</p><br></div>
         <div class="pokemon-info"><p>Gewicht: ${
@@ -32,10 +49,4 @@ function templateRenderPopupCard(pokemon) {
         }</p><br></div>
         <div class="pokemon-info"><p>Höhe: ${
           pokemon.height
-        }</p><br></div>
-        <nav class="nav-btn">
-          <button class="preview-btn"><img src="./assets/img/zuruck-button.png" alt="Previous" onclick="popupPreviousPokemon(${pokemon.id})"></button>
-          <button class="next-btn"><img src="./assets/img/zuruck-button.png" alt="Next" onclick="popupNextPokemon(${pokemon.id})"></button>
-        </nav>
-    </div>`;
-}
+        }</p><br></div> */}
