@@ -328,12 +328,48 @@ body {
   color: #333;
 }
 
-.info-container ul {
-  list-style: none;
-  line-height: 30px;
+.info-container table {
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
 }
 
-.info-container ul li {
-  font-size: 18px;
-  font-weight: lighter;
+.info-container table th {
+  width: 50%;
+  text-align: left;
+  padding: 8px;
+  border-bottom: 2px solid #ddd;
+}
+
+.info-container table td {
+  width: 50%;
+  text-align: left;
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+.spinner-container {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.spinner {
+  width: 100px;
+  height: 100px;
+  border: 10px solid #f3f3f3;
+  border-top: 10px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

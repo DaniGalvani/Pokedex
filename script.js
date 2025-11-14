@@ -7,7 +7,6 @@ async function displayAllPokemon() {
   const response = await fetch(`${BASE_URL}?limit=30&offset=0`);
   const data = await response.json();
   pokemonList = data.results;
-  console.log(`${data.results.length} Pokemon gefunden!`);
   document.querySelector("#content-cards").innerHTML = "";
     for (let i = 0; i < data.results.length; i++) {
       const pokemon = data.results[i];
@@ -26,7 +25,6 @@ function renderPokemonCard(pokemon) {
   const contentCards = document.querySelector("#content-cards");
   const primaryType = pokemon.types[0].type.name;
   contentCards.innerHTML += templateRenderPokemonCard(pokemon, primaryType);
-
   const cards = contentCards.querySelectorAll(".pokemon-card");
   const currentCard = cards[cards.length - 1];
   currentCard.classList.add(`type-${primaryType.toLowerCase()}`);
@@ -49,18 +47,21 @@ function searchPokemon() {
 }
 
 async function loadMorePokemon() {
+  showSpinner();
   const currentCount = document.querySelectorAll(".pokemon-card").length;
   const newOffset = currentCount;
   const response = await fetch(`${BASE_URL}?limit=30&offset=${newOffset}`);
   const data = await response.json();
   pokemonList = data.results;
-  console.log(`${data.results.length} weitere Pokemon geladen!`);
-  for (let i = 0; i < data.results.length; i++) {
+    for (let i = 0; i < data.results.length; i++) {
     const pokemon = data.results[i];
     const pokemonDetails = await fetchPokemonDetails(pokemon.url);
     allPokemonDetails.push(pokemonDetails);
     renderPokemonCard(pokemonDetails);
-  }
+    }
+  setTimeout(() => {
+    hideSpinner();
+  }, 300);
 }
 
 function resetDisplayPokemon() {
@@ -109,4 +110,12 @@ function popupPreviousPokemon(currentId) {
   const popupCardInfo = document.getElementById("popup-card-info");
   popupCardInfo.className = "popup-card-info";
   openPopupCard(previousPokemon.id);
+}
+
+function showSpinner() {
+  document.querySelector(".spinner-container").style.display = "flex";
+}
+
+function hideSpinner() {
+  document.querySelector(".spinner-container").style.display = "none";
 }

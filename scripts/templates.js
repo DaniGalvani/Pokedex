@@ -4,7 +4,7 @@ function templateRenderPokemonCard(pokemon) {
             <h3>${
               pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)
             }</h3>
-            <img src="${pokemon.sprites.other.home.front_shiny}" alt="${pokemon.name}">
+            <img src="${pokemon.sprites.other.home.front_shiny}" alt="${pokemon.name}" loading="lazy">
             <div class="pokemon-info"><p> <i>${pokemon.types
               .map(
                 (type) =>
@@ -22,18 +22,32 @@ function templateRenderPopupCard(pokemon) {
         <h2>${
           pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)
         }</h2>      
-        <img src="${pokemon.sprites.other.home.front_shiny}" alt="${pokemon.name}">
+        <img src="${pokemon.sprites.other.home.front_shiny}" alt="${pokemon.name}" loading="lazy">
       </div>
       <div class="info-container">
-        <ul>
-          <li><strong>Typ:</strong> ${pokemon.types
-            .map((type) => type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1))
-            .join(", ")}</li>
-          <li><strong>Abilities:</strong> ${pokemon.abilities
-            .map((ability) => ability.ability.name.charAt(0).toUpperCase() + ability.ability.name.slice(1))
-            .join(", ")}</li>
-        </ul>
-      </div>  
+        <table>
+          <tr>
+            <th>Type:</th>
+            <td>${pokemon.types
+              .map((type) => type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1))
+              .join(", ")}</td>
+          </tr>
+          <tr>
+            <th>Abilities:</th>
+            <td>${pokemon.abilities
+              .map((ability) => ability.ability.name.charAt(0).toUpperCase() + ability.ability.name.slice(1))
+              .join(", ")}</td>
+          </tr>
+          <tr>
+            <th>Weight:</th>
+            <td>${pokemon.weight}</td>
+          </tr>
+          <tr>
+            <th>Height:</th>
+            <td>${pokemon.height}</td>
+          </tr>
+        </table>
+      </div>
         <nav class="nav-btn">
           <button class="preview-btn"><img src="./assets/img/zuruck-button.png" alt="Previous" onclick="popupPreviousPokemon(${pokemon.id})"></button>
           <button class="next-btn"><img src="./assets/img/zuruck-button.png" alt="Next" onclick="popupNextPokemon(${pokemon.id})"></button>
