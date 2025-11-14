@@ -54,13 +54,3 @@ function templateRenderPopupCard(pokemon) {
         </nav>  
     </div>`;
 }
-
-{/* <div class="pokemon-info"><p>Fähigkeit: ${pokemon.abilities
-          .map((ability) => ability.ability.name.charAt(0).toUpperCase() + ability.ability.name.slice(1))
-          .join(", ")}</p><br></div>
-        <div class="pokemon-info"><p>Gewicht: ${
-          pokemon.weight
-        }</p><br></div>
-        <div class="pokemon-info"><p>Höhe: ${
-          pokemon.height
-        }</p><br></div> */}
