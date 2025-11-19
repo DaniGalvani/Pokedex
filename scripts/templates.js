@@ -39,12 +39,20 @@ function templateRenderPopupCard(pokemon) {
               .join(", ")}</td>
           </tr>
           <tr>
-            <th>Weight:</th>
-            <td>${pokemon.weight}</td>
+            <th>Attack:</th>
+            <td>${pokemon.stats.find(stat => stat.stat.name === "attack").base_stat}</td>
           </tr>
           <tr>
-            <th>Height:</th>
-            <td>${pokemon.height}</td>
+            <th>Defense:</th>
+            <td>${pokemon.stats.find(stat => stat.stat.name === "defense").base_stat}</td>
+          </tr>
+          <tr>
+            <th>HP:</th>
+            <td>${pokemon.stats.find(stat => stat.stat.name === "hp").base_stat}</td>
+          </tr>
+          <tr>
+            <th>Weight:</th>
+            <td>${pokemon.weight} kg</td>
           </tr>
         </table>
       </div>

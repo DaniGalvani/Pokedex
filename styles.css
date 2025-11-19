@@ -7,6 +7,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  max-width: 1920px;
 }
 
 body {
@@ -372,4 +373,80 @@ body {
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 720px) {
+  .header-container h1 {
+    font-size: 64px;    
+  }
+
+  .header-container p {
+    font-size: 28px;
+  }
+
+  .header-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 20px;
+  }
+
+  .search-bar input {
+    width: 80%;
+  }
+}
+
+@media (max-width: 420px) {
+  .header-container h1 {
+    font-size: 36px;
+  }
+
+  .header-container p {
+    font-size: 20px;
+  }
+
+  .fs-24 {
+    font-size: 18px !important;
+  }
+  
+  .header-icon {
+    width: 40px;
+    height: 40px;
+    margin: 0 20px;
+  }
+
+  .search-bar input {
+    width: 80%;    
+  }
+
+  .info-container {
+    width: 100%;
+  }
+
+  .nav-btn {
+    width: 100%;
+  }
+
+  .btn-flex {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .load-more-btn, .reset-btn {
+    width: 80%;
+  }
+
+  .img-container h2 {
+    font-size: 32px;
+    margin: 0;
+  }
+
+  .flex-container .img-container img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .popup-card .close-btn {
+    top: 15px;
+    left: 20px;
+  }
 }

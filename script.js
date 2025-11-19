@@ -114,8 +114,12 @@ function popupPreviousPokemon(currentId) {
 
 function showSpinner() {
   document.querySelector(".spinner-container").style.display = "flex";
+  document.body.style.overflow = "hidden";
+  document.getElementById("load-more-btn").disabled = true;
 }
 
 function hideSpinner() {
   document.querySelector(".spinner-container").style.display = "none";
+  document.body.style.overflow = "auto";
+  document.getElementById("load-more-btn").disabled = false;
 }

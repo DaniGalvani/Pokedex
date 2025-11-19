@@ -35,7 +35,7 @@
             class="input"
             type="text"
             id="search-input"
-            placeholder="Suche nach deinem Lieblings-Pokémon..."
+            placeholder="Pokémonsuche..."
             oninput="searchPokemon()"
           />
         </div>
@@ -43,8 +43,8 @@
     </header>
     <div class="content" id="content-cards"></div>
     <div class="btn-flex">
-      <button class="load-more-btn" onclick="loadMorePokemon()">
-        Mehr Pokémon laden
+      <button class="load-more-btn" id="load-more-btn" onclick="loadMorePokemon()">
+        + 20 Pokémon
       </button>
       <button class="reset-btn" onclick="resetDisplayPokemon()">
         Zurücksetzen
