@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body onload="displayAllPokemon()">
-    <header class="header-container">
+    <header class="header-container" id="header">
       <div class="header">
         <div class="img-container">
           <img
@@ -46,9 +46,11 @@
       <button class="load-more-btn" id="load-more-btn" onclick="loadMorePokemon()">
         + 20 Pokémon
       </button>
-      <button class="reset-btn" onclick="resetDisplayPokemon()">
-        Zurücksetzen
+      <a href="#header">
+      <button class="reset-btn">
+        nach oben
       </button>
+      </a>
     </div>
     <div class="popup" id="popup">
       <div class="popup-card" id="popup-card">
