@@ -4,9 +4,13 @@ let pokemonList = [];
 let allPokemonDetails = [];
 
 async function displayAllPokemon() {
-  const response = await fetch(`${BASE_URL}?limit=30&offset=0`);
+  const searchInput = document.getElementById("search-input");
+  searchInput.value = "";
+  pokemonList = [];
+  const response = await fetch(`${BASE_URL}?limit=20&offset=0`);
   const data = await response.json();
   pokemonList = data.results;
+  allPokemonDetails = [];
   document.querySelector("#content-cards").innerHTML = "";
     for (let i = 0; i < data.results.length; i++) {
       const pokemon = data.results[i];
@@ -14,6 +18,7 @@ async function displayAllPokemon() {
       allPokemonDetails.push(pokemonDetails);
       renderPokemonCard(pokemonDetails);
     }
+  ButtonVisibility();
 }
 
 async function fetchPokemonDetails(url) {
@@ -32,6 +37,7 @@ function renderPokemonCard(pokemon) {
 
 function searchPokemon() {
   const input = document.getElementById("search-input").value.toLowerCase();
+  ButtonVisibility();
   if (input.length < 3) {
     const pokemonCards = document.querySelectorAll(".pokemon-card");
     pokemonCards.forEach((card) => {
@@ -50,7 +56,7 @@ async function loadMorePokemon() {
   showSpinner();
   const currentCount = document.querySelectorAll(".pokemon-card").length;
   const newOffset = currentCount;
-  const response = await fetch(`${BASE_URL}?limit=30&offset=${newOffset}`);
+  const response = await fetch(`${BASE_URL}?limit=20&offset=${newOffset}`);
   const data = await response.json();
   pokemonList = data.results;
     for (let i = 0; i < data.results.length; i++) {
@@ -122,4 +128,25 @@ function hideSpinner() {
   document.querySelector(".spinner-container").style.display = "none";
   document.body.style.overflow = "auto";
   document.getElementById("load-more-btn").disabled = false;
+}
+
+function ButtonVisibility() {
+  const resetBtn = document.getElementById("reset-btn");
+  const searchInput = document.getElementById("search-input");
+  const topBtn = document.getElementById("top-btn");
+  const loadMoreBtn = document.getElementById("load-more-btn");
+  searchInput.value.length >= 3 ? resetBtn.removeAttribute("hidden") : resetBtn.setAttribute("hidden", "");
+  searchInput.value.length >= 3 ? loadMoreBtn.setAttribute("hidden", "") : loadMoreBtn.removeAttribute("hidden");
+  searchInput.value.length >= 3 ? topBtn.setAttribute("hidden", "") : topBtn.removeAttribute("hidden");
+  searchInput.value.length >= 3 ? buttonCenter() : buttonSpaceEvenly();
+}
+
+function buttonCenter() {
+  const btnFlex = document.querySelector(".btn-flex");
+  btnFlex.style.justifyContent = "center";
+}
+
+function buttonSpaceEvenly() {
+  const btnFlex = document.querySelector(".btn-flex");
+  btnFlex.style.justifyContent = "space-evenly";
 }

@@ -35,7 +35,7 @@
             class="input"
             type="text"
             id="search-input"
-            placeholder="Pokémonsuche..."
+            placeholder="Suche dein Pokémon..."
             oninput="searchPokemon()"
           />
         </div>
@@ -47,10 +47,11 @@
         + 20 Pokémon
       </button>
       <a href="#header">
-      <button class="reset-btn">
+      <button class="reset-btn" id="top-btn">
         nach oben
       </button>
       </a>
+      <button class="reset-btn" id="reset-btn" onclick="resetDisplayPokemon()" hidden>Zurücksetzen</button>
     </div>
     <div class="popup" id="popup">
       <div class="popup-card" id="popup-card">
