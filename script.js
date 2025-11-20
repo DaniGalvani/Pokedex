@@ -6,18 +6,16 @@ let allPokemonDetails = [];
 async function displayAllPokemon() {
   const searchInput = document.getElementById("search-input");
   searchInput.value = "";
-  pokemonList = [];
   const response = await fetch(`${BASE_URL}?limit=20&offset=0`);
   const data = await response.json();
-  pokemonList = data.results;
   allPokemonDetails = [];
   document.querySelector("#content-cards").innerHTML = "";
-    for (let i = 0; i < data.results.length; i++) {
-      const pokemon = data.results[i];
-      const pokemonDetails = await fetchPokemonDetails(pokemon.url);
-      allPokemonDetails.push(pokemonDetails);
-      renderPokemonCard(pokemonDetails);
-    }
+  const promises = data.results.map(pokemon => fetchPokemonDetails(pokemon.url));
+  const pokemonDetailsArray = await Promise.all(promises);
+  pokemonDetailsArray.forEach(pokemonDetails => {
+    allPokemonDetails.push(pokemonDetails);
+    renderPokemonCard(pokemonDetails);
+  });
   ButtonVisibility();
 }
 
@@ -59,12 +57,13 @@ async function loadMorePokemon() {
   const response = await fetch(`${BASE_URL}?limit=20&offset=${newOffset}`);
   const data = await response.json();
   pokemonList = data.results;
-    for (let i = 0; i < data.results.length; i++) {
-    const pokemon = data.results[i];
-    const pokemonDetails = await fetchPokemonDetails(pokemon.url);
+  const promises = data.results.map(pokemon => fetchPokemonDetails(pokemon.url));
+  const pokemonDetailsArray = await Promise.all(promises);
+  
+  pokemonDetailsArray.forEach(pokemonDetails => {
     allPokemonDetails.push(pokemonDetails);
     renderPokemonCard(pokemonDetails);
-    }
+  });
   setTimeout(() => {
     hideSpinner();
   }, 300);
