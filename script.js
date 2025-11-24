@@ -1,11 +1,11 @@
 const BASE_URL = "https://pokeapi.co/api/v2/pokemon/";
 
-let pokemonList = [];
 let allPokemonDetails = [];
 
 async function displayAllPokemon() {
   const searchInput = document.getElementById("search-input");
   searchInput.value = "";
+  showSpinner();
   const response = await fetch(`${BASE_URL}?limit=20&offset=0`);
   const data = await response.json();
   allPokemonDetails = [];
@@ -17,6 +17,9 @@ async function displayAllPokemon() {
     renderPokemonCard(pokemonDetails);
   });
   ButtonVisibility();
+  setTimeout(() => {
+    hideSpinner();
+  }, 300);
 }
 
 async function fetchPokemonDetails(url) {
@@ -56,7 +59,6 @@ async function loadMorePokemon() {
   const newOffset = currentCount;
   const response = await fetch(`${BASE_URL}?limit=20&offset=${newOffset}`);
   const data = await response.json();
-  pokemonList = data.results;
   const promises = data.results.map(pokemon => fetchPokemonDetails(pokemon.url));
   const pokemonDetailsArray = await Promise.all(promises);
   
